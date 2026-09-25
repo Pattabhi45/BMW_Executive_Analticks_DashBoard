@@ -27,7 +27,7 @@ def write_parquet(
     for column, (_, scale) in decimal_columns.items():
         quantizer = Decimal(1).scaleb(-scale)
         frame[column] = frame[column].map(
-            lambda value: None
+            lambda value, quantizer=quantizer: None
             if pd.isna(value)
             else Decimal(str(value)).quantize(quantizer)
         )
