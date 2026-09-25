@@ -31,7 +31,7 @@ jobs:
 
   deploy:
     needs: test-and-package
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && vars.AWS_REGION != '' && vars.AWS_DEPLOY_ROLE_ARN != '' && vars.BMW_BUCKET_NAME != ''
     runs-on: ubuntu-latest
     environment: production
     steps:
